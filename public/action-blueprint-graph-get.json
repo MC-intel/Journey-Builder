@@ -1,0 +1,159 @@
+{
+  "id": "bp_journey_demo",
+  "tenant_id": "tenant_demo",
+  "name": "Journey Builder Demo Blueprint",
+  "category": "demo",
+  "nodes": [
+    {
+      "id": "form-a",
+      "type": "form",
+      "position": { "x": 0, "y": 0 },
+      "data": {
+        "id": "node-a",
+        "component_key": "form-a",
+        "component_type": "form",
+        "component_id": "f_a",
+        "name": "Form A",
+        "prerequisites": []
+      }
+    },
+    {
+      "id": "form-b",
+      "type": "form",
+      "position": { "x": 240, "y": -120 },
+      "data": {
+        "id": "node-b",
+        "component_key": "form-b",
+        "component_type": "form",
+        "component_id": "f_b",
+        "name": "Form B",
+        "prerequisites": ["form-a"]
+      }
+    },
+    {
+      "id": "form-c",
+      "type": "form",
+      "position": { "x": 240, "y": 120 },
+      "data": {
+        "id": "node-c",
+        "component_key": "form-c",
+        "component_type": "form",
+        "component_id": "f_c",
+        "name": "Form C",
+        "prerequisites": ["form-a"]
+      }
+    },
+    {
+      "id": "form-d",
+      "type": "form",
+      "position": { "x": 480, "y": 0 },
+      "data": {
+        "id": "node-d",
+        "component_key": "form-d",
+        "component_type": "form",
+        "component_id": "f_d",
+        "name": "Form D",
+        "prerequisites": ["form-b", "form-c", "form-e"]
+      }
+    },
+    {
+      "id": "form-e",
+      "type": "form",
+      "position": { "x": 240, "y": 320 },
+      "data": {
+        "id": "node-e",
+        "component_key": "form-e",
+        "component_type": "form",
+        "component_id": "f_e",
+        "name": "Form E",
+        "prerequisites": []
+      }
+    }
+  ],
+  "edges": [
+    { "source": "form-a", "target": "form-b" },
+    { "source": "form-a", "target": "form-c" },
+    { "source": "form-b", "target": "form-d" },
+    { "source": "form-c", "target": "form-d" },
+    { "source": "form-e", "target": "form-d" }
+  ],
+  "forms": [
+    {
+      "id": "f_a",
+      "name": "Form A",
+      "field_schema": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "avantos_type": "email", "title": "Email" },
+          "first_name": { "type": "string", "avantos_type": "short-text", "title": "First Name" },
+          "last_name": { "type": "string", "avantos_type": "short-text", "title": "Last Name" },
+          "company": { "type": "string", "avantos_type": "short-text", "title": "Company" }
+        },
+        "required": ["email"]
+      }
+    },
+    {
+      "id": "f_b",
+      "name": "Form B",
+      "field_schema": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "avantos_type": "email", "title": "Email" },
+          "first_name": { "type": "string", "avantos_type": "short-text", "title": "First Name" },
+          "dynamic_checkbox_group": {
+            "type": "array",
+            "avantos_type": "checkbox-group",
+            "title": "Dynamic Checkbox Group"
+          }
+        },
+        "required": []
+      }
+    },
+    {
+      "id": "f_c",
+      "name": "Form C",
+      "field_schema": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "avantos_type": "email", "title": "Email" },
+          "phone": { "type": "string", "avantos_type": "short-text", "title": "Phone" }
+        },
+        "required": []
+      }
+    },
+    {
+      "id": "f_d",
+      "name": "Form D",
+      "field_schema": {
+        "type": "object",
+        "properties": {
+          "email": { "type": "string", "avantos_type": "email", "title": "Email" },
+          "dynamic_checkbox_group": {
+            "type": "array",
+            "avantos_type": "checkbox-group",
+            "title": "Dynamic Checkbox Group"
+          },
+          "dynamic_object": {
+            "type": "object",
+            "avantos_type": "object-enum",
+            "title": "Dynamic Object"
+          },
+          "notes": { "type": "string", "avantos_type": "multi-line-text", "title": "Notes" }
+        },
+        "required": []
+      }
+    },
+    {
+      "id": "f_e",
+      "name": "Form E",
+      "field_schema": {
+        "type": "object",
+        "properties": {
+          "account_id": { "type": "string", "avantos_type": "short-text", "title": "Account ID" },
+          "region": { "type": "string", "avantos_type": "short-text", "title": "Region" }
+        },
+        "required": []
+      }
+    }
+  ]
+}
